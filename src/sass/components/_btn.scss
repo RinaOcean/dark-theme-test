@@ -1,0 +1,303 @@
+/* кнопка героя и регистрации */
+$time: 1000ms;
+
+$btns: (
+  alpha: (
+    gstart: $accent-color,
+    gend: $third-color,
+    tstart: $third-color,
+    tend: $accent-color,
+  ),
+  beta: (
+    gstart: $third-color,
+    gend: $accent-color,
+    tstart: $accent-color,
+    tend: $third-color,
+  ),
+  gamma: (
+    gstart: transparent,
+    gend: $accent-color,
+    tstart: $accent-color,
+    tend: $third-color,
+  ),
+);
+
+.button-registration {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  width: 260px;
+  height: 48px;
+  font-family: $primary-font;
+  font-style: normal;
+  @include font(700, 12px, 15px);
+  letter-spacing: 0.08em;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: $third-color;
+  background-color: $accent-color;
+  border: none;
+  cursor: pointer;
+  /* transition: background-color 250ms $timing-function; */
+  transition: all $time;
+
+  .header & {
+    border: 2px solid $accent-color;
+  }
+
+  .header-buttons & {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  .backdrop & {
+    margin: 50px auto 0;
+    padding: 14px 10px;
+    border: 2px solid $accent-color;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .btn-reg {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:before {
+    content: '';
+    background-color: $third-color;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale(4) translateX(-100%);
+    transition: all $time * 1.5 ease-out;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    &:before {
+      transform: scale(4) translate(37%);
+    }
+    border: 2px solid $accent-color;
+  }
+}
+
+@each $bname, $bcolors in $btns {
+  .btn--#{$bname} {
+    background-color: map-get($bcolors, gstart);
+    color: map-get($bcolors, tstart);
+
+    &:before {
+      background-color: map-get($bcolors, gend);
+      background-image: linear-gradient(
+        to right,
+        map-get($bcolors, gend) 30%,
+        map-get($bcolors, gstart) 100%
+      );
+      position: absolute;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: map-get($bcolors, tend);
+    }
+  }
+}
+
+.btn-menu-box {
+  width: 20px;
+  border: 0;
+  background-color: transparent;
+  position: relative;
+
+  .btn-menu {
+    width: 20px;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    /*position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    /*z-index: 990;*/
+    cursor: pointer;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    /*box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3);*/
+    border-radius: 1px;
+    height: 2px;
+    background: #000000;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  span + span {
+    margin-top: 3px;
+  }
+
+  .active span {
+    background: #fff;
+  }
+
+  .active span:nth-child(1) {
+    animation: ease 0.7s top forwards;
+  }
+
+  .not-active span:nth-child(1) {
+    animation: ease 0.7s top-2 forwards;
+  }
+
+  .active span:nth-child(2) {
+    animation: ease 0.7s scaled forwards;
+  }
+
+  .not-active span:nth-child(2) {
+    animation: ease 0.7s scaled-2 forwards;
+  }
+
+  .active span:nth-child(3) {
+    animation: ease 0.7s bottom forwards;
+  }
+
+  .not-active span:nth-child(3) {
+    animation: ease 0.7s bottom-2 forwards;
+  }
+
+  @keyframes top {
+    0% {
+      top: 0;
+      transform: rotate(0);
+    }
+    50% {
+      top: 5px;
+      transform: rotate(0);
+    }
+    100% {
+      top: 5px;
+      transform: rotate(225deg);
+    }
+  }
+
+  @keyframes top-2 {
+    0% {
+      top: 5px;
+      transform: rotate(225deg);
+    }
+    50% {
+      top: 5px;
+      transform: rotate(0deg);
+    }
+    100% {
+      top: 0;
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes bottom {
+    0% {
+      bottom: 0;
+      transform: rotate(0);
+    }
+    50% {
+      bottom: 5px;
+      transform: rotate(0);
+    }
+    100% {
+      bottom: 5px;
+      transform: rotate(315deg);
+    }
+  }
+
+  @keyframes bottom-2 {
+    0% {
+      bottom: 5px;
+      transform: rotate(315deg);
+    }
+    50% {
+      bottom: 5px;
+      transform: rotate(0);
+    }
+    100% {
+      bottom: 0;
+      transform: rotate(0);
+    }
+  }
+
+  @keyframes scaled {
+    50% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes scaled-2 {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+.hero-btn {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    animation-name: shake;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 400ms;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-duration: 400ms;
+    animation-delay: 1000ms;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  16%,
+  50%,
+  83% {
+    transform: translateX(-10px);
+  }
+  33%,
+  66% {
+    transform: translateX(10px);
+  }
+}
+@-webkit-keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+  }
+  16%,
+  50%,
+  83% {
+    -webkit-transform: translateX(-10px);
+  }
+  33%,
+  66% {
+    -webkit-transform: translateX(10px);
+  }
+}

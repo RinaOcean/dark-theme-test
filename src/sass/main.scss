@@ -1,0 +1,30 @@
+// BASE
+@import './utils/variables';
+@import './utils/mixin';
+@import './base/basic-reset';
+@import './base/common';
+@import './base/container';
+@import './utils/visually-hidden';
+
+// COMPONENTS
+@import './components/title';
+@import './components/btn';
+@import './components/scroll';
+@import './components/modal-menu';
+
+//LAYOUTS
+@import './layouts/header';
+@import './layouts/hero';
+@import './layouts/offer';
+@import './layouts/problems';
+@import './layouts/methods';
+@import './layouts/program';
+@import './layouts/teacher';
+@import './layouts/guaranties';
+@import './layouts/slider';
+@import './layouts/registration';
+@import './layouts/footer';
+
+//DARK MODE THEME
+@import './components/dark-mode-switcher';
+@import './utils/dark-mode-styles';
