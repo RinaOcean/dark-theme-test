@@ -3063,13 +3063,13 @@ body.dark-theme {
   background-color: #3d3d3d;
 }
 body.dark-theme img {
-  opacity: 40%;
+  opacity: 0.5;
 }
 body.dark-theme .header img {
-  opacity: 80%;
+  opacity: 0.8;
 }
 body.dark-theme .footer img {
-  opacity: 80%;
+  opacity: 0.8;
 }
 body.dark-theme .slick-slide img {
   border-radius: 50%;
